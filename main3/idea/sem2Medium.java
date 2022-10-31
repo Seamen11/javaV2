@@ -120,8 +120,8 @@ public class sem2Medium
                     String[] data = BazaZad();
                     String s1 = data[0];
                     String s2 = data[1];
-                    String ID = "Первая строка ";
-                    String ID1 = "Вторая строка ";
+                    String ID = "ПерваяCтрока";
+                    String ID1 = "ВтораяCтрока";
                     insertSQL(tablename, ID, s1, ID1, s2);
                 }case 4 ->{ // сохранение размера
                     String[] data = BazaZad();

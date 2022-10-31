@@ -11,12 +11,12 @@ public class sem4Medium {
         try
         {
             int Value = Integer.parseInt(arguement);
-            return true;
+            return false;
         } catch (NumberFormatException e)
         {
             System.out.println("Введенное значение невозможно преобразовать в целочисленное, повторите ввод: ");
         }
-        return false;
+        return true;
     }
 
     public static void insertSQL(String tablename, String ID, String stroka) throws SQLException {
@@ -25,7 +25,7 @@ public class sem4Medium {
         Connection con2 = DriverManager.getConnection(mySQLurl2, "root", "7043931Nik");
         System.out.println("Успешное подключение к базе данных. ");
 
-        String query2 = "INSERT INTO " + tablename + "(ID, STROKA) VALUES (?, ?)";
+        String query2 = "INSERT INTO " + tablename + " (ID, STROKA) VALUES (?, ?)";
         PreparedStatement stmt3 = con2.prepareStatement(query2);
         stmt3.setString(1, ID);
         stmt3.setString(2, stroka);
@@ -123,7 +123,7 @@ public class sem4Medium {
                     String kol = in.next();
                     if (kol.length() != 0)
                     {
-                        while(!ProverkaNaInt(kol))
+                        while(ProverkaNaInt(kol))
                         {
                             kol = in.next();
                         }
@@ -133,18 +133,20 @@ public class sem4Medium {
                     String kol1 = in.next();
                     if (kol1.length() != 0)
                     {
-                        while(!ProverkaNaInt(kol1))
+                        while(ProverkaNaInt(kol1))
                         {
                             kol1 = in.next();
                         }
                     }
+                    NachaloSreza = Integer.parseInt(kol);
+                    KonetsSreza = Integer.parseInt(kol1);
+
                     String ss1 = s1.substring(NachaloSreza, KonetsSreza);
                     String ss2 = s2.substring(NachaloSreza, KonetsSreza);
-                    for (int i = 0; i < 2; i++)
-                    {
-                        insertSQL(tablename, "Срез1", ss1);
-                        insertSQL(tablename, "Срез2", ss2);
-                    }
+
+                    insertSQL(tablename, "Срез1", ss1);
+                    insertSQL(tablename, "Срез2", ss2);
+
 
                 }case 4 ->{  // регистр меняем
                     Scanner in = new Scanner(System.in);
@@ -167,19 +169,16 @@ public class sem4Medium {
                     String ss11 = s1.toLowerCase();
                     String ss2 = s2.toUpperCase();
                     String ss22 = s2.toLowerCase();
-                    for (int i = 0; i < 4; i++)
-                    {
-                        insertSQL(tablename, "Верхний1", ss1);
-                        insertSQL(tablename, "Нижний1", ss11);
-                        insertSQL(tablename, "Верхний2", ss2);
-                        insertSQL(tablename, "Нижний", ss22);
-                    }
+
+                    insertSQL(tablename, "Верхний1", ss1);
+                    insertSQL(tablename, "Нижний1", ss11);
+                    insertSQL(tablename, "Верхний2", ss2);
+                    insertSQL(tablename, "Нижний", ss22);
+
                 }case 5 ->{ // поиск подстроки и определение конца строки
                     Scanner in = new Scanner(System.in);
                     System.out.println("Введите первую строку до 50 символов");
                     String s1 = in.nextLine();
-                    int NachaloSreza = 0;
-                    int KonetsSreza = 0;
 
                     while (s1.length() > 50) {
                         System.out.println("Строка не должна превышать 50 символов, повторите ввод: ");
@@ -192,15 +191,6 @@ public class sem4Medium {
                         s2 = in.nextLine();
                     }
 
-                    System.out.println("Введите срез (начало), по умолчанию 0: ");
-                    String kol = in.next();
-                    if (kol.length() != 0)
-                    {
-                        while(!ProverkaNaInt(kol))
-                        {
-                            kol = in.next();
-                        }
-                    }
                     System.out.println("Введите Подстроку, опредеелим кончается ли этой подстрокой наши строки: ");
                     String podstr = in.next();
 
@@ -217,8 +207,8 @@ public class sem4Medium {
                     }if (s2.endsWith(podstr)){
                         opred2 = "true";
                     }
-                    insertSQL(podstr, "ЯвляетсяЛи1", opred1);
-                    insertSQL(podstr, "ЯвляетсяЛи2", opred2);
+                    insertSQL(tablename, "ЯвляетсяЛи1", opred1);
+                    insertSQL(tablename, "ЯвляетсяЛи2", opred2);
                 }
             }
         }System.out.println("Выход из программы (успешно)");
