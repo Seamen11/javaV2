@@ -1,9 +1,6 @@
 package com.main2.idea;
 
-public class sem1Hard
-{
-    public static void main(String[] args)
-    {
+import java.sql.SQLException;
 
-    }
+public class sem1Hard {
 }
