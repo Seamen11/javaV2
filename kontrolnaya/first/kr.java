@@ -1,4 +1,4 @@
-package com.kontrolnaya;
+package com.kontrolnaya.first;
 import java.util.Scanner;
 
 public class kr

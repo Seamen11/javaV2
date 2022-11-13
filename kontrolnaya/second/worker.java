@@ -1,4 +1,4 @@
-package com.kontrolnaya;
+package com.kontrolnaya.second;
 
 import java.util.Scanner;
 
